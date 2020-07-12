@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'backend.apps.BackendConfig',
     'martor',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
