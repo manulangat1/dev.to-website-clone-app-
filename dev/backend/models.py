@@ -13,15 +13,20 @@ class Post(BaseModel):
     def __str__(self):
         return self.title
 
+    def get_likes_all(self):
+        return self.likes.count()
+    def get_dislikes_all(self):
+        return self.dislikes.count()
+
 class Like(models.Model):
-    post = models.ForeignKey(Post,on_delete=models.CASCADE)
+    post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name="likes")
     likes = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.post.title
 
 class Dislikes(models.Model):
-    post = models.ForeignKey(Post,on_delete=models.CASCADE)
+    post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name="dislikes")
     dislikes = models.PositiveIntegerField()
 
     def __str__(self):
