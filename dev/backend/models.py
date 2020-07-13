@@ -20,7 +20,7 @@ class AccountType(models.Model):
     valid_through = models.DateTimeField()
 
     def __str__(self):
-        return self.user.username
+        return "{0} type {1}".format(self.user.username,self.type)
 
 
 class BaseModel(models.Model):

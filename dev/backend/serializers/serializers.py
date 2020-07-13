@@ -1,6 +1,15 @@
 
 from ._base import * 
 
+class AccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AccountType
+        fields = (
+            'id',
+            'user',
+            'type'
+        )
+
 class PostSerializer(serializers.ModelSerializer):
     likes = serializers.SerializerMethodField()
     dislikes = serializers.SerializerMethodField()

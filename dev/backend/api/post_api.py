@@ -11,3 +11,7 @@ class LikeAPI(generics.ListAPIView):
 class DislikesAPI(generics.ListAPIView):
     queryset = Dislikes.objects.all()
     serializer_class = DislikesSerializer
+
+class AccountAPI(generics.ListAPIView):
+    queryset = AccountType.objects.all()
+    serializer_class = AccountSerializer
