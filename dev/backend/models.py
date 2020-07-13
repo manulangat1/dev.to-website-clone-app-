@@ -8,7 +8,7 @@ class BaseModel(models.Model):
 
 class User(AbstractUser):
     bio = models.TextField(blank=True,null=True)
-
+    friends = models.ManyToManyField('User',blank=True,null=True)
     def __str__(self):
         return self.username
 
@@ -60,7 +60,11 @@ class Dislikes(models.Model):
         return self.post.title
 
 
+class FriendRequest(BaseModel):
+    to_user = models.ForeignKey(User,related_name="to_user",on_delete=models.CASCADE)
+    from_user = models.ForeignKey(User,related_name="from_user",on_delete=models.CASCADE)
 
-
+    def __str__(self):
+        return " From {0} to {1}".format(self.from_user.username,self.to_user.username)
 
 
