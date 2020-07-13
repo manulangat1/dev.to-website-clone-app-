@@ -24,7 +24,7 @@ class AccountType(models.Model):
     valid_through = models.DateTimeField()
 
     def __str__(self):
-        return "{0} type {1}".format(self.user.username,self.type)
+        return "{0} costs {1}".format(self.type, self.price)
 
 class UserMembership(BaseModel):
     user = models.ForeignKey(User,on_delete=models.CASCADE)

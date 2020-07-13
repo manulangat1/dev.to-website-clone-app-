@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.db import  models
 from martor.widgets import AdminMartorWidget
-from .models import Post,Like,Dislikes,AccountType
+from .models import Post,Like,Dislikes,AccountType,UserMembership
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
@@ -18,3 +18,4 @@ admin.site.register(Like)
 admin.site.register(Dislikes)
 admin.site.register(User,UserAdmin)
 admin.site.register(AccountType)
+admin.site.register(UserMembership)
