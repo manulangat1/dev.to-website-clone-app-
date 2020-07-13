@@ -1,6 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 from martor.models import MartorField 
 # Create your models here.
+
+class User(AbstractUser):
+    bio = models.TextField(blank=True,null=True)
+
+    def __str__(self):
+        return self.bio
+
+
+
 
 class BaseModel(models.Model):
     published_at = models.DateTimeField(auto_now_add=True)
@@ -31,6 +41,7 @@ class Dislikes(models.Model):
 
     def __str__(self):
         return self.post.title
+
 
 
 
