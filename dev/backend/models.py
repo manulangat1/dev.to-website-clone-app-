@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from martor.models import MartorField 
 # Create your models here.
+class BaseModel(models.Model):
+    published_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField()
 
 class User(AbstractUser):
     bio = models.TextField(blank=True,null=True)
@@ -14,18 +17,21 @@ class AccountType(models.Model):
         ('FREE','FREE'),
         ('PRO','PRO'),   
     )
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    
     type  = models.CharField(max_length=25,choices=ACCOUNT_TYPES,default="FREE")
+    price = models.PositiveIntegerField()
     created = models.DateTimeField(auto_now_add=True)
     valid_through = models.DateTimeField()
 
     def __str__(self):
         return "{0} type {1}".format(self.user.username,self.type)
 
+class UserMembership(BaseModel):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    membership = models.ForeignKey(AccountType,on_delete=models.CASCADE)
 
-class BaseModel(models.Model):
-    published_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField()
+    def __str__(self):
+        return "{0} type {1}".format(self.user.username,self.membership.type)
 
 class Post(BaseModel):
     title = models.CharField(max_length=70)

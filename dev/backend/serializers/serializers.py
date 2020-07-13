@@ -7,7 +7,9 @@ class AccountSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'user',
-            'type'
+            'type',
+            'created',
+            'valid_through'
         )
 
 class PostSerializer(serializers.ModelSerializer):
