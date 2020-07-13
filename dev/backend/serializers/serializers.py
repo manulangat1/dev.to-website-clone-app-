@@ -11,7 +11,35 @@ class AccountSerializer(serializers.ModelSerializer):
             'created',
             'valid_through'
         )
-
+class UsersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            'id',
+            'username',
+            'email',
+            'friends'
+        )
+class UserSerializer(serializers.ModelSerializer):
+    friends = serializers.SerializerMethodField()
+    class Meta:
+        model = User
+        fields = (
+            'id',
+            'username',
+            'email',
+            'friends'
+        )
+    def get_friends(self,obj):
+        return UsersSerializer(obj.friends.all(),many=True).data
+class FriendRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FriendRequest
+        fields = (
+            'id',
+            'to_user',
+            'from_user',
+        )
 class PostSerializer(serializers.ModelSerializer):
     likes = serializers.SerializerMethodField()
     dislikes = serializers.SerializerMethodField()
