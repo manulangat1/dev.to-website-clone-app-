@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { loadPosts } from '../../actions/posts'
 
 import ReactMarkdown from "react-markdown";
+import MarkdownPreview from '@uiw/react-markdown-preview';
 
 // import 'github-markdown-css'
 
@@ -19,7 +20,8 @@ class Posts extends React.Component{
                             <h1>{post.title}</h1>
                             {/* <p>{post.body}</p> */}
                             <div className="markdown-body">
-                            <ReactMarkdown source={post.body} />
+                            {/* <ReactMarkdown source={post.body} /> */}
+                            <MarkdownPreview source={post.body} />
                             </div>
                         </div>
                     ))
