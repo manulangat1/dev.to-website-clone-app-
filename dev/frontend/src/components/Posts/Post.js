@@ -4,6 +4,8 @@ import { loadPosts } from '../../actions/posts'
 
 import ReactMarkdown from "react-markdown";
 
+// import 'github-markdown-css'
+
 class Posts extends React.Component{
     componentDidMount(){
         this.props.loadPosts()
@@ -15,8 +17,10 @@ class Posts extends React.Component{
                     this.props.posts.map(post => (
                         <div key={post.id}>
                             <h1>{post.title}</h1>
-                            <p>{post.body}</p>
+                            {/* <p>{post.body}</p> */}
+                            <div className="markdown-body">
                             <ReactMarkdown source={post.body} />
+                            </div>
                         </div>
                     ))
                 }
