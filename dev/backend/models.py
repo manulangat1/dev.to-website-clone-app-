@@ -48,7 +48,7 @@ class Post(BaseModel):
 
 class Like(models.Model):
     post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name="likes")
-    likes = models.PositiveIntegerField(default=0)
+    likes = models.BooleanField(default=False)
     user = models.ForeignKey(User,related_name="likes",on_delete=models.CASCADE,null=True,blank=True)
     def __str__(self):
         return self.post.title

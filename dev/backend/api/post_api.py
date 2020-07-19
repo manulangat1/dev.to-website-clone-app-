@@ -11,6 +11,12 @@ class LikeAPI(generics.ListAPIView):
     serializer_class = LikeSerializer
 class LikeCreateAPI(APIView):
     def post(self,request,*args,**kwargs):
+        user = 1 
+        post = request.data['post']
+        like = Like.objects.filter(post=post,user=user)
+        if like:
+            print(like)
+        # likes = Like.objects.create(user=user,post=post)
         return Response("hey")
 class DislikesAPI(generics.ListAPIView):
     queryset = Dislikes.objects.all()
