@@ -9,7 +9,9 @@ class PostDetailsAPI(generics.RetrieveAPIView):
 class LikeAPI(generics.ListAPIView):
     queryset = Like.objects.all()
     serializer_class = LikeSerializer
-
+class LikeCreateAPI(APIView):
+    def post(self,request,*args,**kwargs):
+        return Response("hey")
 class DislikesAPI(generics.ListAPIView):
     queryset = Dislikes.objects.all()
     serializer_class = DislikesSerializer

@@ -9,6 +9,7 @@ urlpatterns = [
     path('friend/<pk>/',FriendRequestAccept.as_view(),name="user"),
     path('unfriend/<pk>/',FriendRequestUnfollow.as_view(),name="user_unfollow"),
     path('likes/',LikeAPI.as_view(),name="like"),
+    path('like/create/',LikeCreateAPI.as_view()),
     path('accounts/',AccountAPI.as_view(),name="like"),
     path('dislikes/',DislikesAPI.as_view(),name="dislikes")
 ]
