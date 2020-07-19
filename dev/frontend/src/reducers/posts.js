@@ -1,8 +1,9 @@
-import { GET_POSTS,ADD_POSTS,GET_POST }  from '../actions/types'
+import { GET_POSTS,ADD_POSTS,GET_POST, ADD_LIKE }  from '../actions/types'
 
 const initialState = {
     posts:[],
-    post:[]
+    post:[],
+    like:[]
 }
 export default function(state=initialState,action){
     switch(action.type){
@@ -15,6 +16,11 @@ export default function(state=initialState,action){
             return {
                 ...state,
                 post:action.payload
+            }
+        case ADD_LIKE:
+            return{
+                ...state,
+                like:action.payload
             }
         default:
             return state

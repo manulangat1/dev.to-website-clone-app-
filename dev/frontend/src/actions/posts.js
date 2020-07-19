@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_POSTS,ADD_POSTS,GET_POST} from './types'
+import { GET_POSTS,ADD_POSTS,GET_POST, ADD_LIKE,REMOVE_LIKE} from './types'
 
 
 export const loadPosts = () => (dispatch,getState) => {
@@ -25,5 +25,17 @@ export const loadPost = id => (dispatch,getState) => {
                 })
             }
         )
+        .catch(err => console.log(err))
+}
+export const addLike = post => (dispatch,getState) => {
+    const post = JSON.stringify({post})
+    axios
+        .post('/api/like/create/',post)
+        .then(res => {
+            dispatch({
+                type:ADD_LIKE,
+                payload:res.data
+            })
+        })
         .catch(err => console.log(err))
 }

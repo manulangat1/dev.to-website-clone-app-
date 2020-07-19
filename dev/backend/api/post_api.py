@@ -18,7 +18,9 @@ class LikeCreateAPI(APIView):
         like = Like.objects.filter(post=post,user=user)
         if like:
             print(like)
-            return Response("Already likes")
+            like.delete()
+            return Response("Like removed")
+            
         else:
             likeS = Like.objects.create(user=user,post=post)
             likeS.likes = True 

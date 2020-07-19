@@ -16,8 +16,8 @@ class PostDetail extends React.Component{
             <div>
                 <h1>{post.title}</h1>
                 <MarkdownPreview source={post.body} />
-                <p>{post.likes}</p>
-                <p>{post.dislikes}</p>
+                <p>{post.likes} upvotes {post.dislikes} downvotes</p>
+                <button>Like</button>
             </div>
         )
         const notFound = (
