@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { loadPosts } from '../../actions/posts'
-
+import { Link } from 'react-router-dom'
 import ReactMarkdown from "react-markdown";
 import MarkdownPreview from '@uiw/react-markdown-preview';
 
@@ -23,6 +23,7 @@ class Posts extends React.Component{
                             {/* <ReactMarkdown source={post.body} /> */}
                             <MarkdownPreview source={post.body} />
                             </div>
+                            <Link to={`/post/${post.id}`}>Read more</Link>
                         </div>
                     ))
                 }

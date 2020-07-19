@@ -3,7 +3,9 @@ class PostAPI(generics.ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
-
+class PostDetailsAPI(generics.RetrieveAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
 class LikeAPI(generics.ListAPIView):
     queryset = Like.objects.all()
     serializer_class = LikeSerializer
