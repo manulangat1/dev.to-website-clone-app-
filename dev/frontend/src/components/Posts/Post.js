@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { loadPosts } from '../../actions/posts'
 
+import ReactMarkdown from "react-markdown";
+
 class Posts extends React.Component{
     componentDidMount(){
         this.props.loadPosts()
@@ -9,7 +11,15 @@ class Posts extends React.Component{
     render(){
         return(
             <section>
-                <h1>hey</h1>
+                {
+                    this.props.posts.map(post => (
+                        <div key={post.id}>
+                            <h1>{post.title}</h1>
+                            <p>{post.body}</p>
+                            <ReactMarkdown source={post.body} />
+                        </div>
+                    ))
+                }
             </section>
         )
     }
