@@ -4,7 +4,7 @@ import { GET_POSTS,ADD_POSTS} from './types'
 
 export const loadPosts = () => (dispatch,getState) => {
     axios
-        .get()
+        .get('/api/')
         .then( res => {
             dispatch({
                 type:GET_POSTS,
