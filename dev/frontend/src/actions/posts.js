@@ -15,6 +15,11 @@ export const loadPosts = () => (dispatch,getState) => {
 }
 
 export const loadPost = id => (dispatch,getState) => {
+    const config={
+        headers:{
+            'Content-Type':'application/json'
+        }
+    }
     axios
         .get(`/api/post/${id}/`)
         .then(
@@ -27,10 +32,15 @@ export const loadPost = id => (dispatch,getState) => {
         )
         .catch(err => console.log(err))
 }
-export const addLike = post => (dispatch,getState) => {
-    const post = JSON.stringify({post})
+export const addLike = id => (dispatch,getState) => {
+    const config={
+        headers:{
+            'Content-Type':'application/json'
+        }
+    }
+    const body = JSON.stringify({id})
     axios
-        .post('/api/like/create/',post)
+        .post('/api/like/create/',body,config)
         .then(res => {
             dispatch({
                 type:ADD_LIKE,

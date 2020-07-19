@@ -12,11 +12,13 @@ class LikeAPI(generics.ListAPIView):
 class LikeCreateAPI(APIView):
     def post(self,request,*args,**kwargs):
         uses = 1 
-        pos = request.data['post']
+        pos = request.data['id']
+        # pos =request.POST.get('id')
+        print(pos)
         user = User.objects.get(pk=uses)
         post  = Post.objects.get(pk=pos)
         like = Like.objects.filter(post=post,user=user)
-        if like:
+        if user and post and like:
             print(like)
             like.delete()
             return Response("Like removed")

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { loadPost } from '../../actions/posts'
+import { loadPost ,addLike} from '../../actions/posts'
 import MarkdownPreview from '@uiw/react-markdown-preview';
 
 class PostDetail extends React.Component{
@@ -10,14 +10,23 @@ class PostDetail extends React.Component{
             this.props.loadPost(id)
         }
     }
+    
     render(){
+        const onClick = id => {
+            // const {id} = this.props.match.params
+            console.log("hey")
+            if (id){
+                console.log(id)
+                this.props.addLike(id)
+            }
+        }
         const { post } = this.props
         const postD = (
             <div>
                 <h1>{post.title}</h1>
                 <MarkdownPreview source={post.body} />
                 <p>{post.likes} upvotes {post.dislikes} downvotes</p>
-                <button>Like</button>
+                <button onClick={onClick.bind(this,post.id)}>Like</button>
             </div>
         )
         const notFound = (
@@ -35,4 +44,4 @@ class PostDetail extends React.Component{
 const mapStateToProps = state => ({
     post:state.posts.post
 })
-export default connect(mapStateToProps,{loadPost})(PostDetail)
+export default connect(mapStateToProps,{loadPost,addLike})(PostDetail)
