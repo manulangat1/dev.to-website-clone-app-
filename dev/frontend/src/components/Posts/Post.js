@@ -5,12 +5,10 @@ import { Link } from 'react-router-dom'
 import ReactMarkdown from "react-markdown";
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import axios from 'axios'
-// import 'github-markdown-css'
+
 
 class Posts extends React.Component{
     componentDidMount(){
-        console.log("pppp")
-        // this.props.loadPosts()
         this.loadPost()
     }
     loadPost = () => {
