@@ -40,7 +40,7 @@ class Posts extends React.Component{
             Posts:[],
             hasMore:true,
             offset:0,
-            limit:2
+            limit:4
         }
         const {error,loading,hasMore} = this.state
         window.onscroll = () => {
@@ -49,9 +49,8 @@ class Posts extends React.Component{
             if (loading || error  || !hasMore) return
             console.log(hasMore)
             if(document.documentElement.scrollHeight - document.documentElement.scrollTop === document.documentElement.clientHeight ){
-                console.log("hello")
-                //call loading method
                 this.loadPost()
+                console.log("pdhdh")
             }
         }
         
