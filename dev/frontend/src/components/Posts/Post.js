@@ -58,7 +58,7 @@ class Posts extends React.Component{
     }
     
     render(){
-        const {error,loading,Posts} = this.state
+        const {error,loading,Posts,hasMore} = this.state
         return(
             <section>
                 <div style={{overflowY:'scroll',flex:1}}>

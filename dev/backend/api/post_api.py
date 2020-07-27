@@ -1,7 +1,15 @@
 from ._base import *
+
+def infinite_filter(request):
+    limit = request.GET.get('limit')
+    offset = request.GET.get('offset')
+    return Post.objects.all()[int(offset):int(offset+limit)]
 class PostAPI(generics.ListAPIView):
-    queryset = Post.objects.all()
+    # queryset = Post.objects.all()
     serializer_class = PostSerializer
+    def get_queryset(self):
+        qs = infinite_filter(self.request)
+        return qs
 
 class PostDetailsAPI(generics.RetrieveAPIView):
     queryset = Post.objects.all()
