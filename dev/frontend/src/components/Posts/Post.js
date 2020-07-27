@@ -61,7 +61,7 @@ class Posts extends React.Component{
         return(
             <section>
                 {
-                    this.props.posts.map(post => (
+                    this.state.Posts.map(post => (
                         <div key={post.id}>
                             <h1>{post.title}</h1>
                             {/* <p>{post.body}</p> */}
