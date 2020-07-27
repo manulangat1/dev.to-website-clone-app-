@@ -61,7 +61,7 @@ class Posts extends React.Component{
         const {error,loading,Posts} = this.state
         return(
             <section>
-                <div>
+                <div style={{overflowY:'scroll',flex:1}}>
                 {
                    Posts.map(post => (
                         <div key={post.id}>
