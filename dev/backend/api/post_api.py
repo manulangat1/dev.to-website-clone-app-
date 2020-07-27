@@ -10,6 +10,13 @@ class PostAPI(generics.ListAPIView):
     def get_queryset(self):
         qs = infinite_filter(self.request)
         return qs
+    def list(self,request):
+        queryset = self.get_queryset()
+        serializer = self.serializer_class(queryset,many=True)
+        return Response({
+            "posts":serializer.data
+            # hasMore:
+        })
 
 class PostDetailsAPI(generics.RetrieveAPIView):
     queryset = Post.objects.all()
