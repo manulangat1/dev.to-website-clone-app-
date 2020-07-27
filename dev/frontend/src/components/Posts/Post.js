@@ -19,7 +19,7 @@ class Posts extends React.Component{
             axios.get(`/api/?limit=${limit}&offset=${offset}`)
                 .then(res => {
                     const newPosts = res.data.posts
-                    const hasMore = res.data.hasMore
+                    const hasMore = res.data.has_more
 
                     this.setState({
                         hasMore,

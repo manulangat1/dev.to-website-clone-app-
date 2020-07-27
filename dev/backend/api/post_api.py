@@ -4,6 +4,12 @@ def infinite_filter(request):
     limit = request.GET.get('limit')
     offset = request.GET.get('offset')
     return Post.objects.all()[int(offset):int(offset+limit)]
+
+def is_there_more_data(request):
+    offset = request.GET.get('offset')
+    if int(offset) > Post.objects.all().count():
+        return False
+    return True
 class PostAPI(generics.ListAPIView):
     # queryset = Post.objects.all()
     serializer_class = PostSerializer
@@ -14,8 +20,8 @@ class PostAPI(generics.ListAPIView):
         queryset = self.get_queryset()
         serializer = self.serializer_class(queryset,many=True)
         return Response({
-            "posts":serializer.data
-            # hasMore:
+            "posts":serializer.data,
+            "has_more":is_there_more_data(request)
         })
 
 class PostDetailsAPI(generics.RetrieveAPIView):
