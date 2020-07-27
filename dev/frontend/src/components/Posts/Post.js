@@ -75,6 +75,8 @@ class Posts extends React.Component{
                         </div>
                     ))
                 }
+                {!hasMore && <div>No more results</div>}
+                {loading && <div>Loading</div>}
                 </div>
             </section>
         )
