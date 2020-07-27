@@ -10,34 +10,43 @@ import axios from 'axios'
 class Posts extends React.Component{
     componentDidMount(){
         console.log("pppp")
-        this.props.loadPosts()
+        // this.props.loadPosts()
+        this.loadPost()
     }
     loadPost = () => {
         this.setState({loading:true},() => {
             const {offset,limit} = this.state
-            // axios.get(`/api/?limit=${limit}&offset=${offset}`)
-            //     .then(res => {
-            //         this.setState({
-            //             Posts:
-            //         })
-            //     })
-            //     .catch()
+            axios.get(`/api/?limit=${limit}&offset=${offset}`)
+                .then(res => {
+                    const newPosts = res.data
+                    const hasMore = res.data.hasMore
+
+                    this.setState({
+                        hasMore,
+                        loading:false,
+                        Posts:[...this.state.Posts,...newPosts],
+                        offset:offset+limit
+                    })
+                    console.log(this.state.Posts)
+                })
+                .catch()
         })
     }
     constructor(props){
         super(props)
         this.state = {
+            error:false,
             loading:false,
             Posts:[],
             hasMore:true,
             offset:0,
-            limit:20
+            limit:2
         }
-        const {posts,hasMore} = this.props
+        const {error,loading,hasMore} = this.state
         window.onscroll = () => {
             
             // console.log(this.props.posts)
-            if (!hasMore) return
+            if (loading || error  || !hasMore) return
             console.log(hasMore)
             if(document.documentElement.scrollHeight - document.documentElement.scrollTop === document.documentElement.clientHeight ){
                 console.log("hello")
