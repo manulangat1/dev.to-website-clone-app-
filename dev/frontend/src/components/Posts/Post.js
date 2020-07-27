@@ -4,15 +4,35 @@ import { loadPosts } from '../../actions/posts'
 import { Link } from 'react-router-dom'
 import ReactMarkdown from "react-markdown";
 import MarkdownPreview from '@uiw/react-markdown-preview';
-
+import axios from 'axios'
 // import 'github-markdown-css'
 
 class Posts extends React.Component{
     componentDidMount(){
+        console.log("pppp")
         this.props.loadPosts()
+    }
+    loadPost = () => {
+        this.setState({loading:true},() => {
+            const {offset,limit} = this.state
+            // axios.get(`/api/?limit=${limit}&offset=${offset}`)
+            //     .then(res => {
+            //         this.setState({
+            //             Posts:
+            //         })
+            //     })
+            //     .catch()
+        })
     }
     constructor(props){
         super(props)
+        this.state = {
+            loading:false,
+            Posts:[],
+            hasMore:true,
+            offset:0,
+            limit:20
+        }
         const {posts,hasMore} = this.props
         window.onscroll = () => {
             
@@ -21,6 +41,8 @@ class Posts extends React.Component{
             console.log(hasMore)
             if(document.documentElement.scrollHeight - document.documentElement.scrollTop === document.documentElement.clientHeight ){
                 console.log("hello")
+                //call loading method
+                this.loadPost()
             }
         }
         
