@@ -58,10 +58,12 @@ class Posts extends React.Component{
     }
     
     render(){
+        const {error,loading,Posts} = this.state
         return(
             <section>
+                <div>
                 {
-                    this.state.Posts.map(post => (
+                   Posts.map(post => (
                         <div key={post.id}>
                             <h1>{post.title}</h1>
                             {/* <p>{post.body}</p> */}
@@ -73,6 +75,7 @@ class Posts extends React.Component{
                         </div>
                     ))
                 }
+                </div>
             </section>
         )
     }
