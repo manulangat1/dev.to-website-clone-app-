@@ -57,8 +57,9 @@ class Posts extends React.Component{
     render(){
         const {error,loading,Posts,hasMore} = this.state
         return(
-            <section>
-                <div style={{overflowY:'scroll',flex:1}}>
+            <section id="post">
+                <div className="container">
+                <div style={{overflowY:'hidden',flex:1}}>
                 {
                    Posts.map(post => (
                         <div key={post.id}>
@@ -72,6 +73,7 @@ class Posts extends React.Component{
                 }
                 {!hasMore && <div>No more results</div>}
                 {loading && <div>Loading</div>}
+                </div>
                 </div>
             </section>
         )
