@@ -44,6 +44,11 @@ header{
     height: 70px;
     // background-color: #181818;
     // color: #f5f5f5;
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    width:100%;
+    z-index: 1000;
     background-color:#35424a;
     border-bottom: #ff7b39 3px solid;
     .container{
