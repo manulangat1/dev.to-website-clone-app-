@@ -63,9 +63,7 @@ class Posts extends React.Component{
                    Posts.map(post => (
                         <div key={post.id}>
                             <h1>{post.title}</h1>
-                            {/* <p>{post.body}</p> */}
                             <div className="markdown-body">
-                            {/* <ReactMarkdown source={post.body} /> */}
                             <MarkdownPreview source={post.body} />
                             </div>
                             <Link to={`/post/${post.id}`}>Read more</Link>
