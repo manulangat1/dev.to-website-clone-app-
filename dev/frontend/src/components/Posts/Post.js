@@ -60,6 +60,7 @@ class Posts extends React.Component{
             <section id="post">
                 <div className="container">
                 <div style={{overflowY:'hidden',flex:1}}>
+                    <div className="grids">
                 {
                    Posts.map(post => (
                         <div key={post.id}>
@@ -71,7 +72,8 @@ class Posts extends React.Component{
                         </div>
                     ))
                 }
-                {!hasMore && <div>No more results</div>}
+                </div>
+                {!hasMore && <div className="noMore">No more results</div>}
                 {loading && <div>Loading</div>}
                 </div>
                 </div>
