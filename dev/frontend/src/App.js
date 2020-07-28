@@ -7,6 +7,9 @@ import NotFound from './components/error/NotFound'
 import PostDetail from './components/Posts/PostDetail'
 import Login from './components/auth/Login'
 import { HashRouter as Router,Route,Switch} from 'react-router-dom'
+
+import './styles/main.scss'
+
 class App extends React.Component{
   render(){
     return(
