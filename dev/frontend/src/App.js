@@ -8,6 +8,9 @@ import PostDetail from './components/Posts/PostDetail'
 import Login from './components/auth/Login'
 import { HashRouter as Router,Route,Switch} from 'react-router-dom'
 
+import Header from './components/layout/Header'
+import Footer from './components/layout/Footer'
+
 import './styles/main.scss'
 
 class App extends React.Component{
@@ -15,7 +18,9 @@ class App extends React.Component{
     return(
       <Provider store={store}>
       <Router>
+      <Header />
       <main>
+        
         <Switch>
 
         <Route exact path="/post/:id" component={PostDetail} />
@@ -25,6 +30,7 @@ class App extends React.Component{
         
         </Switch>
       </main>
+      <Footer />
       </Router>
       </Provider>
     )
