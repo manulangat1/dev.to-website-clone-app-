@@ -4,6 +4,9 @@
     margin: 0;
     box-sizing: border-box;
 }
+main{
+    min-height: 80vh;
+}
 ul{
     li{
         list-style-type: none;
@@ -83,6 +86,11 @@ header{
 }
 #postDetail{
     padding: 1.5rem;
+    min-height: 80vh;
+}
+#notFound{
+    padding:2rem;
+    text-align: center;
     min-height: 80vh;
 }
 //styling the footer class 
