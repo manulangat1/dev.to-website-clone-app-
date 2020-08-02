@@ -6,14 +6,20 @@ const initialState = {
     like:[],
     hasMore:true,
     offset:0,
-    limit:20
+    limit:4,
+    error:false,
+    loading:false
 }
 export default function(state=initialState,action){
     switch(action.type){
         case GET_POSTS:
             return {
                 ...state,
-                posts:action.payload
+                posts:[...state.posts,...action.payload.posts],
+                hasMore:action.payload.has_more,
+                error:false,
+                loading:false,
+                offset:state.offset+state.limit
             }
         case GET_POST:
             return {

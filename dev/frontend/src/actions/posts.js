@@ -4,8 +4,12 @@ import {tokenConfig } from './auth'
 
 export const loadPosts = () => (dispatch,getState) => {
     console.log(tokenConfig(getState))
+    const limit = getState().posts.limit
+    console.log(limit)
+    const offset = getState().posts.offset
+    console.log(offset)
     axios
-        .get('/api/',tokenConfig(getState))
+        .get(`/api/?limit=${limit}&offset=${offset}`,tokenConfig(getState))
         .then( res => {
             dispatch({
                 type:GET_POSTS,
