@@ -1,2 +1,4 @@
 from django.urls import path
-from  ..api.post_api import PostAPI,LikeAPI,DislikesAPI,AccountAPI,UserAPI,FriendRequestAccept,FriendRequestCreateAPI,FriendRequestUnfollow,PostDetailsAPI,LikeCreateAPI
+from django.urls import path,include
+from  ..api.post_api import PostAPI,LikeAPI,DislikesAPI,AccountAPI,UserAPI,FriendRequestAccept,FriendRequestCreateAPI,FriendRequestUnfollow,PostDetailsAPI,LikeCreateAPI,UserAPI,RegisterAPI,LoginAPI
+from knox import views as knox_views
