@@ -8,6 +8,56 @@ main{
     min-height: 80vh;
     margin-top: 2.9rem;
 }
+#dash{
+    padding:2rem;
+    .container{
+        // display: grid;
+        // grid-template-columns: 30% 70%;
+        // grid-gap: 1rem;
+    }
+    .main{
+        // width: 70% !important;
+        // margin: auto;
+        margin-left: 30%;
+    }
+    .sidepanel{
+
+        width: 30%; /* Set the width of the sidebar */
+        // position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+        z-index: 1; /* Stay on top */
+        // top: 0; /* Stay at the top */
+        // left: 0;
+        background-color: #111; /* Black */
+        color:#f5f5f5;
+        overflow: hidden;
+        min-height: 80vh;
+        // overflow-x: hidden; /* Disable horizontal scroll */
+        // padding-top: 20px;
+    }
+    #page-wrap { 
+        width: 30%; 
+        // margin: 15px auto; 
+        position: relative; 
+        margin: 0;
+        // min-height: 80vh;
+        // background-color: #111; /* Black */
+        // height: 100vh;
+      }
+      
+      #sidebar { 
+        top:0;
+        width: 30%; 
+        position: fixed; 
+        margin-top: 3.5rem;
+        min-height: 80vh;
+        // margin-left: 410px; 
+        left: 0;
+        padding: 2rem;
+        background-color: #111; /* Black */
+        overflow: hidden;
+        z-index: 1;
+      }
+}
 ul{
     li{
         list-style-type: none;
@@ -117,13 +167,16 @@ header{
 #post{
     padding: 1.5rem;
     margin-top: 1.3rem;
-    .container{
         .grids{
             display: grid;
-            grid-template-columns: repeat(2,1fr);
+            grid-template-columns: 1fr;
             grid-gap: 1rem;
+            margin-bottom: 2rem;
+            overflow: hidden;
         }
-    }
+        
+        width: 90% !important;
+        margin: auto;
     .noMore{
         text-align: center;
         text-decoration: wavy;
@@ -147,4 +200,5 @@ footer{
     color: #f5f5f5;
     background: #181818;
     text-align: center;
+    z-index: 1000;
 }
