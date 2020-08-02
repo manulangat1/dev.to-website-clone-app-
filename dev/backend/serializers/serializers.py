@@ -18,7 +18,6 @@ class LoginSerializer(serializers.Serializer):
 
 # register serializers
 class RegisterSerilizer(serializers.ModelSerializer):
-    pic = serializers.ImageField(default=None)
     class Meta:
         model = User
         fields = (
