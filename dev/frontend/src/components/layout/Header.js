@@ -5,10 +5,16 @@ class Header extends React.Component{
     render(){
         return(
             <header>
-                <ul>
+                <div className="container">
+                    <h1>Dev.to</h1>
+                    <div>
+                    <ul>
                     <li> <NavLink to="/">Home</NavLink> </li>
                     <li> <NavLink to="/login/">Login</NavLink> </li>
                 </ul>
+                    </div>
+                </div>
+                
             </header>
         )
     }

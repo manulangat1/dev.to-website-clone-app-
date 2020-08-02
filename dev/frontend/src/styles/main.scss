@@ -6,11 +6,14 @@
 }
 main{
     min-height: 80vh;
+    margin-top: 2.9rem;
 }
 ul{
     li{
         list-style-type: none;
-        display: inline;
+        display: inline-block;
+        margin-right: 1rem;
+        padding: 0 0.3rem;
     }
 }
 a{
@@ -39,13 +42,41 @@ a{
 }
 //styling the header class
 header{
-    height: 70px;
-    background-color: #181818;
-    color: #f5f5f5;
-
+    height: 60px;
+    // background-color: #181818;
+    // color: #f5f5f5;
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    width:100%;
+    z-index: 1000;
+    background-color:#35424a;
+    border-bottom: #ff7b39 2px solid;
+    .container{
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+       
+        h1{
+            margin-top: 1.4rem;
+            // padding: 0;
+            translate: -35;
+            // margin-top: 0;
+        }
+    }
+    a{
+        // margin-top: 1.2rem;
+        color: #f5f5f5;
+        transition: all 3s;
+        &:hover{
+            text-decoration: underline;
+            color: green;
+        }
+    }
     ul{
+        float: right;
         li{
             text-decoration: none;
+            margin-top: 1.4rem;
         }
     }
 }
@@ -56,7 +87,9 @@ header{
     // text-align: center;
     background-color: #333;
     color: #f5f5f5;
-    height: 80vh;
+    min-height: 80vh;
+    padding: 2rem;
+    margin-top: 2.9rem;
     flex-direction: column;
     .form{
         margin: 1rem;
@@ -83,10 +116,25 @@ header{
 //styling post 
 #post{
     padding: 1.5rem;
+    margin-top: 1.3rem;
+    .container{
+        .grids{
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            grid-gap: 1rem;
+        }
+    }
+    .noMore{
+        text-align: center;
+        text-decoration: wavy;
+        padding:1.5rem;
+        color: #35424a;
+    }
 }
 #postDetail{
     padding: 1.5rem;
     min-height: 80vh;
+    margin-top: 1.3rem;
 }
 #notFound{
     padding:2rem;
