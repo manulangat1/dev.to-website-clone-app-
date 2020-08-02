@@ -21,7 +21,7 @@ class Dashboard extends React.Component{
         return(
             <section id="dash">
                 <div className="container">
-                <Sticky enabled={true} top={50} bottomBoundary={1200} innerClass="sidepanel" releasedClass="sidepanel">
+                <Sticky enabled={true} top={50} bottomBoundary={1200} innerClass="sidepanel" >
                         {/* <YourComponent/> */}
                         <h1>ppp</h1>
                 </Sticky>
