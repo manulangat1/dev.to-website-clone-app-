@@ -20,16 +20,12 @@ class Dashboard extends React.Component{
     render(){
         return(
             <section id="dash">
-                <div className="container">
-                <Sticky enabled={true} top={50} bottomBoundary={1200} innerClass="sidepanel" >
-                        {/* <YourComponent/> */}
-                        <h1>ppp</h1>
-                </Sticky>
-                    {/* <div id="page-wrap">
-                    <div id="sidebar">
+                <div className="containers">
+                    {/* <div id="page-wrap"> */}
+                    <div className="sidepanel">
                         <h1>hey</h1>
                     </div>
-                    </div> */}
+                    {/* </div> */}
                     <div className="main">
                     <Post />
                     </div>
