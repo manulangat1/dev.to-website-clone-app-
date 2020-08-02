@@ -13,10 +13,13 @@ import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 
 import PrivateRoute from './components/common/PrivateRoute'
-
+import { loadUser } from './actions/auth'
 import './styles/main.scss'
 
 class App extends React.Component{
+  componentDidMount(){
+    store.dispatch(loadUser())
+  }
   render(){
     return(
       <Provider store={store}>
