@@ -93,31 +93,52 @@ class AccountAPI(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         return serializer.save(valid_through=datetime.now())
 
-# class UserAPI(generics.RetrieveAPIView):
-#     serializer_class = UserSerializer
-#     queryset = User.objects.all()
-    # def get_object(self):
-    #     return self.request.user
-
 class FriendRequestCreateAPI(generics.ListCreateAPIView):
     serializer_class = FriendRequestSerializer
     queryset = FriendRequest.objects.all()
-
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
     def perform_create(self, serializer):
-        return serializer.save(updated_at=datetime.now())
+        from_user=self.request.user
+        to_id = self.request.data['to_user']
+        updated_at=datetime.now()
+        to_user = User.objects.get(pk=to_id)
+        if to_user:
+            return serializer.save(from_user=from_user,to_user=to_user,updated_at=updated_at)
+        return Response("User does not exist")
+class FriendRequestList(generics.ListAPIView):
+    serializer_class = FriendRequestSerializer
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+    def get_queryset(self):
+        user = self.request.user
+        print(user)
+        friendr = FriendRequest.objects.filter(to_user=user).all()
+        print(friendr)
+        return friendr
 class FriendRequestAccept(APIView):
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
     def post(self,request,*args,**kwargs):
+
         pk = kwargs['pk']
+        user = self.request.user
         friendR = FriendRequest.objects.get(pk=pk)
-        print(friendR)
-        user1 = request.data['to_user']
-        user2 = request.data['from_user']
-        print(user1,user2)
-        User1 = User.objects.get(pk=user1)
-        User2 = User.objects.get(pk=user2)
-        print(User1,User2)
-        User1.friends.add(User2)
-        User2.friends.add(User1)
+        # print(friendR)
+        if friendR and friendR.to_user == user:
+            from_user = friendR.from_user
+            print(from_user)
+            user.friends.add(from_user)
+            from_user.friends.add(user)
+            friendR.delete()
+        # User1 = User.objects.get(pk=user1)
+        # User2 = User.objects.get(pk=user2)
+        # print(User1,User2)
+        # User1.friends.add(User2)
+        # User2.friends.add(User1)
         return Response("hey")
 class FriendRequestUnfollow(APIView):
     def post(self,request,*args,**kwargs):
