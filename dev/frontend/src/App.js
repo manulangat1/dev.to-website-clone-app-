@@ -6,6 +6,7 @@ import Posts from './components/Posts/Post'
 import NotFound from './components/error/NotFound'
 import PostDetail from './components/Posts/PostDetail'
 import Login from './components/auth/Login'
+import Register from './components/auth/Register'
 import { HashRouter as Router,Route,Switch} from 'react-router-dom'
 
 import Header from './components/layout/Header'
@@ -26,6 +27,7 @@ class App extends React.Component{
         <Route exact path="/post/:id" component={PostDetail} />
         <Route exact path="/" component={Posts} />
         <Route exact path="/login/" component={Login}  />
+        <Route exact path="/register/" component={Register}  />
         <Route exact path="**" component={NotFound} />
         
         </Switch>

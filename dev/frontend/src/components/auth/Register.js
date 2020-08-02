@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 
 class Register extends React.Component{
     state = {
-        username,
-        password,
-        password2,
-        bio,
-        email
+        username:'',
+        password:'',
+        password2:'',
+        bio:'',
+        email:''
     }
     onChange = e => this.setState({[e.target.name]:e.target.value})
     onSubmit = e => {
