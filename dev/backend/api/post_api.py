@@ -1,5 +1,42 @@
 from ._base import *
 
+
+
+
+class RegisterAPI(generics.GenericAPIView):
+    serializer_class = RegisterSerilizer
+    # parser_classes = (MultiPartParser, FormParser)
+    def post(self,request,*args,**kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        return Response({
+            "user": UserSerilizer(user,context=self.get_serializer_context()).data,
+            "token":AuthToken.objects.create(user)[1]
+        })
+class LoginAPI(generics.GenericAPIView):
+    serializer_class = LoginSerializer
+
+    def post(self,request,*args,**kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data
+        return Response({
+            "user": UserSerilizer(user,context=self.get_serializer_context()).data,
+            "token":AuthToken.objects.create(user)[1]
+        })
+class UserAPI(generics.RetrieveUpdateAPIView):
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+    serializer_class = UserSerializer
+    def get_object(self):
+        return self.request.user
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        print(instance)
+        return Response({"Added successfully"})
+
 def infinite_filter(request):
     limit = request.GET.get('limit')
     offset = request.GET.get('offset')
