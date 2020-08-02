@@ -4,14 +4,14 @@ import {LOGOUT_SUCCESS,USER_LOADED,
     LOGIN_SUCCESS } from './types'
 import axios from 'axios'
 
-export const register = ({username,password,email,tel_no,pic}) => dispatch => {
+export const register = ({username,password,email,bio}) => dispatch => {
     const config = {
         headers:{
-            'Content-Type':'multipart/form-data'
+            'Content-Type':'application/json'
         }
     }
-    // const  body = JSON.stringify({username,password,email,tel_no,pic})
-    const  body = {username,password,email,tel_no,pic}
+    // const  body = JSON.stringify({username,password,email,bio})
+    const  body = {username,password,email,bio}
     axios
         .post('/auth/register/',body,config)
         .then(res => {
