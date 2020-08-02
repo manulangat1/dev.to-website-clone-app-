@@ -75,6 +75,7 @@ class Posts extends React.Component{
                     ))
                 }
                 </div>
+                {!posts && <div className="noMore">No posts are the moment</div>}
                 {!hasMore && <div className="noMore">No more results</div>}
                 {loading && <div>Loading</div>}
                 </div>
