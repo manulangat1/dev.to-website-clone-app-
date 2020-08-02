@@ -36,6 +36,8 @@ class UserAPI(generics.RetrieveAPIView):
 def infinite_filter(request):
     limit = request.GET.get('limit')
     offset = request.GET.get('offset')
+    user = request.user
+    print(user)
     return Post.objects.all()[int(offset):int(offset+limit)]
 
 def is_there_more_data(request):

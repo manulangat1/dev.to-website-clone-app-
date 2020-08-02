@@ -35,6 +35,7 @@ class UserMembership(BaseModel):
 
 # class SubScriptio
 class Post(BaseModel):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,blank=True,null=True)
     title = models.CharField(max_length=70)
     body = MartorField()
 
