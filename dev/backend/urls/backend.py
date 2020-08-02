@@ -5,8 +5,8 @@ urlpatterns = [
     path('post/<pk>/',PostDetailsAPI.as_view()),
     # path('users/<pk>/',UserAPI.as_view(),name="user"),
     path('friend/',FriendRequestCreateAPI.as_view(),name="user"),
-    
-    path('friend/<pk>/',FriendRequestAccept.as_view(),name="user"),
+    path('friends/',FriendRequestList.as_view(),name="friend_list"),
+    path('friend/<pk>/',FriendRequestAccept.as_view(),name="friend_detail_list"),
     path('unfriend/<pk>/',FriendRequestUnfollow.as_view(),name="user_unfollow"),
     path('likes/',LikeAPI.as_view(),name="like"),
     path('like/create/',LikeCreateAPI.as_view()),
