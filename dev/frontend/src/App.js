@@ -14,6 +14,8 @@ import Footer from './components/layout/Footer'
 
 import PrivateRoute from './components/common/PrivateRoute'
 import { loadUser } from './actions/auth'
+
+import Dashboard from './components/Posts/Dashboard'
 import './styles/main.scss'
 
 class App extends React.Component{
@@ -30,7 +32,7 @@ class App extends React.Component{
         <Switch>
 
         <PrivateRoute exact path="/post/:id" component={PostDetail} />
-        <PrivateRoute exact path="/" component={Posts} />
+        <PrivateRoute exact path="/" component={Dashboard} />
         <Route exact path="/login/" component={Login}  />
         <Route exact path="/register/" component={Register}  />
         <Route exact path="**" component={NotFound} />

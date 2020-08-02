@@ -60,9 +60,9 @@ class Posts extends React.Component{
         const {error,loading,posts,hasMore} = this.props
         return(
             <section id="post">
-                <div className="container">
-                <div style={{overflow:'hidden',flex:1}}>
-                    <div className="grids">
+                <div>
+                <div>
+                    <div className="grids" >
                 {
                    posts.map(post => (
                         <div key={post.id}>
