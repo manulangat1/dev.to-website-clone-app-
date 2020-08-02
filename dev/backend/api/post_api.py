@@ -38,12 +38,11 @@ def infinite_filter(request):
     offset = request.GET.get('offset')
     user = request.user
     print(user)
-    post1 = Post.objects.filter(user__friends=user).all() | Post.objects.filter(user=user).all()
-    posts = set([post for post in post1  ])
-    posts = list(posts)
-    # posts = Post.objects.filter(user__friends=user).all() | Post.objects.filter(user=user).all()
-    # posts = 
-    print(posts)
+    # post1 = Post.objects.filter(user__friends=user).order_by('-published_at').all() | Post.objects.filter(user=user).order_by('-published_at').all()
+    # posts = set([post for post in post1.order_by('-published_at')  ])
+    # posts = list(posts)
+    # print(posts)
+    posts = Post.objects.order_by('-published_at').all()
     return posts[int(offset):int(offset+limit)]
 
 def is_there_more_data(request):
