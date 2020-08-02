@@ -3,11 +3,31 @@ class PostAPI(generics.ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
-
+class PostDetailsAPI(generics.RetrieveAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
 class LikeAPI(generics.ListAPIView):
     queryset = Like.objects.all()
     serializer_class = LikeSerializer
-
+class LikeCreateAPI(APIView):
+    def post(self,request,*args,**kwargs):
+        uses = 1 
+        pos = request.data['id']
+        # pos =request.POST.get('id')
+        print(pos)
+        user = User.objects.get(pk=uses)
+        post  = Post.objects.get(pk=pos)
+        like = Like.objects.filter(post=post,user=user)
+        if user and post and like:
+            print(like)
+            like.delete()
+            return Response("Like removed")
+            
+        else:
+            likeS = Like.objects.create(user=user,post=post)
+            likeS.likes = True 
+            likeS.save()
+            return Response("hey")
 class DislikesAPI(generics.ListAPIView):
     queryset = Dislikes.objects.all()
     serializer_class = DislikesSerializer
