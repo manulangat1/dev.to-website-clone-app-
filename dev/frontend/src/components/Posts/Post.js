@@ -59,7 +59,7 @@ class Posts extends React.Component{
         return(
             <section id="post">
                 <div className="container">
-                <div style={{overflowY:'hidden',flex:1}}>
+                <div style={{overflow:'hidden',flex:1}}>
                     <div className="grids">
                 {
                    Posts.map(post => (
