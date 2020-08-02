@@ -13,7 +13,7 @@ export const register = ({username,password,email,tel_no,pic}) => dispatch => {
     // const  body = JSON.stringify({username,password,email,tel_no,pic})
     const  body = {username,password,email,tel_no,pic}
     axios
-        .post('/api/register/',body,config)
+        .post('/auth/register/',body,config)
         .then(res => {
             dispatch({
                 type:REGISTER_SUCCESS,
@@ -25,7 +25,7 @@ export const register = ({username,password,email,tel_no,pic}) => dispatch => {
 }
 export const loadUser = () => (dispatch,getState) => {
     dispatch({type:USER_LOADING})    
-    axios.get('/api/user/',tokenConfig(getState))
+    axios.get('/auth/user/',tokenConfig(getState))
          .then(res => {
              dispatch({
                  type:USER_LOADED,
@@ -43,7 +43,7 @@ export const login = (username,password) => dispatch => {
         }
     }
     const  body = JSON.stringify({username,password})
-    axios.post('/api/login/',body,config)
+    axios.post('/auth/login/',body,config)
          .then(res => {
              dispatch({
                  type:LOGIN_SUCCESS,
@@ -54,7 +54,7 @@ export const login = (username,password) => dispatch => {
 }
 //LOGOUT
 export const logout = () => (dispatch,getState) => {
-    axios.post('/api/logout/',null,tokenConfig(getState))
+    axios.post('/auth/logout/',null,tokenConfig(getState))
          .then(res => {
              dispatch({
                  type:LOGOUT_SUCCESS

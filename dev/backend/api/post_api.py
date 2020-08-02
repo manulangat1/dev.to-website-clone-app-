@@ -46,9 +46,7 @@ def is_there_more_data(request):
 class PostAPI(generics.ListAPIView):
     # queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [
-        permissions.IsAuthenticated,
-    ]
+    
     def get_queryset(self):
         qs = infinite_filter(self.request)
         return qs
@@ -61,12 +59,18 @@ class PostAPI(generics.ListAPIView):
         })
 
 class PostDetailsAPI(generics.RetrieveAPIView):
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 class LikeAPI(generics.ListAPIView):
     queryset = Like.objects.all()
     serializer_class = LikeSerializer
 class LikeCreateAPI(APIView):
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
     def post(self,request,*args,**kwargs):
         uses = 1 
         pos = request.data['id']

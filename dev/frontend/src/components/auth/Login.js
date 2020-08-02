@@ -2,7 +2,8 @@ import React from 'react'
 
 import  { connect } from 'react-redux'
 
-
+import { login } from '../../actions/auth'
+import { Link,Redirect } from 'react-router-dom'
 class Login extends React.Component{
     state = {
         username:'',
@@ -14,8 +15,17 @@ class Login extends React.Component{
     onSubmit = e => {
         e.preventDefault()
         console.log(this.state.username)
+        const {username,password} = this.state
+        this.props.login(username,password)
+        this.setState({
+            username:"",
+            password:""
+        })
     }
     render(){
+        if(this.props.isAuthenticated){
+            return <Redirect to="/" />
+        }
         const {username,password} = this.state
         return(
             <section id="login">
@@ -38,7 +48,8 @@ class Login extends React.Component{
     }
 }
 const mapStateToProps = state => ({
-
+    isAuthenticated:state.auth.isAuthenticated,
+    user:state.auth.user
 })
-// export default connect(mapStateToProps,{})(Login)
-export default Login
+export default connect(mapStateToProps,{login})(Login)
+// export default Login

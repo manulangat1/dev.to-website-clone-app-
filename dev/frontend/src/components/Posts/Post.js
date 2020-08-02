@@ -11,7 +11,9 @@ class Posts extends React.Component{
     componentDidMount(){
         this.loadPost()
     }
-    loadPost = () => {
+    
+    loadPost = (getState) =>  {
+        
         this.setState({loading:true},() => {
             const {offset,limit} = this.state
             axios.get(`/api/?limit=${limit}&offset=${offset}`)
