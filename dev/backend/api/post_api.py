@@ -134,24 +134,23 @@ class FriendRequestAccept(APIView):
             user.friends.add(from_user)
             from_user.friends.add(user)
             friendR.delete()
-        # User1 = User.objects.get(pk=user1)
-        # User2 = User.objects.get(pk=user2)
-        # print(User1,User2)
-        # User1.friends.add(User2)
-        # User2.friends.add(User1)
         return Response("hey")
 class FriendRequestUnfollow(APIView):
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
     def post(self,request,*args,**kwargs):
         pk = kwargs['pk']
         friendR = FriendRequest.objects.get(pk=pk)
-        print(friendR)
-        user1 = request.data['to_user']
-        user2 = request.data['from_user']
-        print(user1,user2)
-        User1 = User.objects.get(pk=user1)
-        User2 = User.objects.get(pk=user2)
-        print(User1,User2)
-        User1.friends.remove(User2)
-        User2.friends.remove(User1)
+        if friendR:
+            print(friendR)
+            user1 = request.data['to_user']
+            user2 = request.data['from_user']
+            print(user1,user2)
+            User1 = User.objects.get(pk=user1)
+            User2 = User.objects.get(pk=user2)
+            print(User1,User2)
+            User1.friends.remove(User2)
+            User2.friends.remove(User1)
         return Response("hey")
         
