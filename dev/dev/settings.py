@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'martor',
     'rest_framework',
     'corsheaders',
+    'knox'
 ]
 
 MIDDLEWARE = [
