@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load martortags %}
+{{ field_name|safe_markdown }}
+{% block body %}
+<h1>hello</h1>
+{% for post in posts%}
+  <h1>{{post.title}}</h1>
+  <p>{{post.body|safe_markdown }}</p>
+{% endfor %}
+{% endblock %}
