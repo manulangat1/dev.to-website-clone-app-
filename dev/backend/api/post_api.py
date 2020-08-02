@@ -25,17 +25,13 @@ class LoginAPI(generics.GenericAPIView):
             "user": UserSerializer(user,context=self.get_serializer_context()).data,
             "token":AuthToken.objects.create(user)[1]
         })
-class UserAPI(generics.RetrieveUpdateAPIView):
+class UserAPI(generics.RetrieveAPIView):
     permission_classes = [
         permissions.IsAuthenticated,
     ]
     serializer_class = UserSerializer
     def get_object(self):
         return self.request.user
-    def update(self, request, *args, **kwargs):
-        instance = self.get_object()
-        print(instance)
-        return Response({"Added successfully"})
 
 def infinite_filter(request):
     limit = request.GET.get('limit')
@@ -97,9 +93,9 @@ class AccountAPI(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         return serializer.save(valid_through=datetime.now())
 
-class UserAPI(generics.RetrieveAPIView):
-    serializer_class = UserSerializer
-    queryset = User.objects.all()
+# class UserAPI(generics.RetrieveAPIView):
+#     serializer_class = UserSerializer
+#     queryset = User.objects.all()
     # def get_object(self):
     #     return self.request.user
 

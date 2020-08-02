@@ -3,7 +3,7 @@ from ._base import *
 urlpatterns = [
     path('',PostAPI.as_view(),name="posts"),
     path('post/<pk>/',PostDetailsAPI.as_view()),
-    path('user/<pk>/',UserAPI.as_view(),name="user"),
+    # path('users/<pk>/',UserAPI.as_view(),name="user"),
     path('friend/',FriendRequestCreateAPI.as_view(),name="user"),
     
     path('friend/<pk>/',FriendRequestAccept.as_view(),name="user"),
