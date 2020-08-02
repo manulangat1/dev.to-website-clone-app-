@@ -11,7 +11,6 @@ class Header extends React.Component{
                     <h1>Dev.to</h1>
                     <div>
                     <ul>
-                    {/* <li> <NavLink to="/">Home</NavLink> </li> */}
                     <li> <NavLink to="/register/">Register</NavLink> </li>
                     <li> <NavLink to="/login/">Login</NavLink> </li>
                 </ul>

@@ -9,7 +9,7 @@ import axios from 'axios'
 
 class Posts extends React.Component{
     componentDidMount(){
-        this.loadPost()
+        this.props.loadPosts()
     }
     
     loadPost = (getState) =>  {
@@ -42,14 +42,14 @@ class Posts extends React.Component{
             offset:0,
             limit:4
         }
-        const {error,loading,hasMore} = this.state
+        const {error,loading,hasMore} = this.props
         window.onscroll = () => {
             
             // console.log(this.props.posts)
             if (loading || error  || !hasMore) return
             console.log(hasMore)
             if(document.documentElement.scrollHeight - document.documentElement.scrollTop === document.documentElement.clientHeight ){
-                this.loadPost()
+                this.props.loadPosts()
                 console.log("pdhdh")
             }
         }
@@ -57,14 +57,14 @@ class Posts extends React.Component{
     }
     
     render(){
-        const {error,loading,Posts,hasMore} = this.state
+        const {error,loading,posts,hasMore} = this.props
         return(
             <section id="post">
                 <div className="container">
                 <div style={{overflow:'hidden',flex:1}}>
                     <div className="grids">
                 {
-                   Posts.map(post => (
+                   posts.map(post => (
                         <div key={post.id}>
                             <h1>{post.title}</h1>
                             <div className="markdown-body">
@@ -75,6 +75,7 @@ class Posts extends React.Component{
                     ))
                 }
                 </div>
+                {!posts && <div className="noMore">No posts are the moment</div>}
                 {!hasMore && <div className="noMore">No more results</div>}
                 {loading && <div>Loading</div>}
                 </div>
@@ -87,6 +88,7 @@ const mapStateToProps = state => ({
     posts:state.posts.posts,
     hasMore:state.posts.hasMore,
     limit:state.posts.limit,
-    offset:state.posts.offset
+    offset:state.posts.offset,
+    error:state.posts.error
 })
 export default connect(mapStateToProps,{loadPosts})(Posts)
