@@ -1,8 +1,9 @@
 import React from 'react'
 import {Route,NavLink,Link} from 'react-router-dom'
-
+import { connect } from 'react-redux'
 class Header extends React.Component{
     render(){
+        const {isAuthenticated} = this.props
         return(
             <header>
                 <div className="container">
@@ -20,4 +21,8 @@ class Header extends React.Component{
         )
     }
 }
-export default Header
+const mapStateToProps = state => ({
+    isAuthenticated:state.auth.isAuthenticated,
+    user:state.auth.user
+})
+export default (mapStateToProps,null)(Header)
