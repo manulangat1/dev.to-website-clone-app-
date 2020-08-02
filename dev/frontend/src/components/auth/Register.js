@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
+import { Redirect } from 'react-router-dom'
+import {register} from '../../actions/auth'
 class Register extends React.Component{
     state = {
         username:'',
@@ -14,8 +15,18 @@ class Register extends React.Component{
         e.preventDefault()
         const { username,password,password2,bio,email} = this.state
         console.log(username,password,password2,bio,email)
+        
+        if(password === password2){
+            const newUser = {
+                username,password,bio,email
+            }
+            this.props.register(newUser)
+        }
     }
     render(){
+        if (this.props.isAuthenticated){
+            return <Redirect to="/" />
+        }
         const { username,password,password2,bio,email} = this.state
         return(
             <section id="login">
@@ -50,7 +61,7 @@ class Register extends React.Component{
     }
 }
 const mapStateToProps = state => ({
-
+    isAuthenticated:state.auth.isAuthenticated
 })
-// export default connect(mapStateToProps,{})(Register)
-export default Register
+export default connect(mapStateToProps,{register})(Register)
+// export default Register
