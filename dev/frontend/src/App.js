@@ -6,14 +6,20 @@ import Posts from './components/Posts/Post'
 import NotFound from './components/error/NotFound'
 import PostDetail from './components/Posts/PostDetail'
 import Login from './components/auth/Login'
+import Register from './components/auth/Register'
 import { HashRouter as Router,Route,Switch} from 'react-router-dom'
 
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 
+import PrivateRoute from './components/common/PrivateRoute'
+import { loadUser } from './actions/auth'
 import './styles/main.scss'
 
 class App extends React.Component{
+  componentDidMount(){
+    store.dispatch(loadUser())
+  }
   render(){
     return(
       <Provider store={store}>
@@ -23,9 +29,10 @@ class App extends React.Component{
         
         <Switch>
 
-        <Route exact path="/post/:id" component={PostDetail} />
-        <Route exact path="/" component={Posts} />
+        <PrivateRoute exact path="/post/:id" component={PostDetail} />
+        <PrivateRoute exact path="/" component={Posts} />
         <Route exact path="/login/" component={Login}  />
+        <Route exact path="/register/" component={Register}  />
         <Route exact path="**" component={NotFound} />
         
         </Switch>

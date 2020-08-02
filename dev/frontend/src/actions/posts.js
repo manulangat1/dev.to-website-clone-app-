@@ -1,10 +1,11 @@
 import axios from 'axios'
 import { GET_POSTS,ADD_POSTS,GET_POST, ADD_LIKE,REMOVE_LIKE} from './types'
-
+import {tokenConfig } from './auth'
 
 export const loadPosts = () => (dispatch,getState) => {
+    console.log(tokenConfig(getState))
     axios
-        .get('/api/')
+        .get('/api/',tokenConfig(getState))
         .then( res => {
             dispatch({
                 type:GET_POSTS,
@@ -21,7 +22,7 @@ export const loadPost = id => (dispatch,getState) => {
         }
     }
     axios
-        .get(`/api/post/${id}/`)
+        .get(`/api/post/${id}/`,tokenConfig(getState))
         .then(
             res => {
                 dispatch({
@@ -40,7 +41,7 @@ export const addLike = id => (dispatch,getState) => {
     }
     const body = JSON.stringify({id})
     axios
-        .post('/api/like/create/',body,config)
+        .post('/api/like/create/',body,tokenConfig(getState))
         .then(res => {
             dispatch({
                 type:ADD_LIKE,

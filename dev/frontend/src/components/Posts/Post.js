@@ -11,7 +11,9 @@ class Posts extends React.Component{
     componentDidMount(){
         this.loadPost()
     }
-    loadPost = () => {
+    
+    loadPost = (getState) =>  {
+        
         this.setState({loading:true},() => {
             const {offset,limit} = this.state
             axios.get(`/api/?limit=${limit}&offset=${offset}`)
@@ -59,7 +61,7 @@ class Posts extends React.Component{
         return(
             <section id="post">
                 <div className="container">
-                <div style={{overflowY:'hidden',flex:1}}>
+                <div style={{overflow:'hidden',flex:1}}>
                     <div className="grids">
                 {
                    Posts.map(post => (
