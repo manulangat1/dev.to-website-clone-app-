@@ -46,6 +46,9 @@ def is_there_more_data(request):
 class PostAPI(generics.ListAPIView):
     # queryset = Post.objects.all()
     serializer_class = PostSerializer
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
     def get_queryset(self):
         qs = infinite_filter(self.request)
         return qs
