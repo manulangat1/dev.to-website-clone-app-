@@ -1,7 +1,28 @@
 from ._base import *
+
+def infinite_filter(request):
+    limit = request.GET.get('limit')
+    offset = request.GET.get('offset')
+    return Post.objects.all()[int(offset):int(offset+limit)]
+
+def is_there_more_data(request):
+    offset = request.GET.get('offset')
+    if int(offset) > Post.objects.all().count():
+        return False
+    return True
 class PostAPI(generics.ListAPIView):
-    queryset = Post.objects.all()
+    # queryset = Post.objects.all()
     serializer_class = PostSerializer
+    def get_queryset(self):
+        qs = infinite_filter(self.request)
+        return qs
+    def list(self,request):
+        queryset = self.get_queryset()
+        serializer = self.serializer_class(queryset,many=True)
+        return Response({
+            "posts":serializer.data,
+            "has_more":is_there_more_data(request)
+        })
 
 class PostDetailsAPI(generics.RetrieveAPIView):
     queryset = Post.objects.all()

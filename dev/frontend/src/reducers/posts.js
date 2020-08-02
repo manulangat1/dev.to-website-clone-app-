@@ -3,7 +3,10 @@ import { GET_POSTS,ADD_POSTS,GET_POST, ADD_LIKE }  from '../actions/types'
 const initialState = {
     posts:[],
     post:[],
-    like:[]
+    like:[],
+    hasMore:true,
+    offset:0,
+    limit:20
 }
 export default function(state=initialState,action){
     switch(action.type){

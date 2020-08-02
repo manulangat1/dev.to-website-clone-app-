@@ -22,7 +22,7 @@ class PostDetail extends React.Component{
         }
         const { post } = this.props
         const postD = (
-            <div>
+            <div className="container">
                 <h1>{post.title}</h1>
                 <MarkdownPreview source={post.body} />
                 <p>{post.likes} upvotes {post.dislikes} downvotes</p>
@@ -33,7 +33,7 @@ class PostDetail extends React.Component{
             <h1>Details not found this may be an eeero on our part</h1>
         )
         return(
-            <section>
+            <section id="postDetail">
                 {
                     post ? postD : notFound
                 }
